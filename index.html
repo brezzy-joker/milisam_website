@@ -1,36 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Milisam Enterprise | Cleaning Experts & General Services</title>
 
   <!-- Bootstrap CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
   <!-- Bootstrap Icons -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"/>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;900&family=DM+Sans:wght@300;400;500;600&display=swap"
+    rel="stylesheet" />
 
   <style>
     /* ── CSS Variables ── */
     :root {
-      --gold:        #C9922A;
-      --gold-light:  #E8B455;
-      --gold-pale:   #F5DFA0;
-      --black:       #0A0A0A;
-      --dark:        #111111;
-      --dark2:       #181818;
-      --dark3:       #222222;
-      --border:      rgba(201,146,42,0.25);
-      --text:        #F0EDE8;
-      --muted:       #888888;
-      --success:     #25D366;
+      --gold: #C9922A;
+      --gold-light: #E8B455;
+      --gold-pale: #F5DFA0;
+      --black: #0A0A0A;
+      --dark: #111111;
+      --dark2: #181818;
+      --dark3: #222222;
+      --border: rgba(201, 146, 42, 0.25);
+      --text: #F0EDE8;
+      --muted: #888888;
+      --success: #25D366;
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-    html { scroll-behavior: smooth; }
+    html {
+      scroll-behavior: smooth;
+    }
 
     body {
       background: var(--black);
@@ -40,45 +49,66 @@
       overflow-x: hidden;
     }
 
-    h1, h2, h3, h4 {
+    h1,
+    h2,
+    h3,
+    h4 {
       font-family: 'Playfair Display', serif;
     }
 
-    .gold { color: var(--gold-light); }
-    .gold-text { color: var(--gold-light); }
+    .gold {
+      color: var(--gold-light);
+    }
 
-    /* ──────────────────────────────────
-       SCROLLBAR
-    ────────────────────────────────── */
-    ::-webkit-scrollbar { width: 8px; }
-    ::-webkit-scrollbar-track { background: var(--black); }
-    ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 20px; }
-    ::-webkit-scrollbar-thumb:hover { background: var(--gold-light); }
+    .gold-text {
+      color: var(--gold-light);
+    }
 
-    /* ──────────────────────────────────
-       NAVBAR
-    ────────────────────────────────── */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: var(--black);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--gold);
+      border-radius: 20px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--gold-light);
+    }
+
     .navbar {
-      background: rgba(10,10,10,0.95);
+      background: rgba(10, 10, 10, 0.95);
       backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--border);
       padding: 1rem 0;
       transition: all 0.4s ease;
     }
+
     .navbar.scrolled {
       padding: 0.6rem 0;
-      background: rgba(8,8,8,0.98);
-      box-shadow: 0 4px 30px rgba(0,0,0,0.5);
+      background: rgba(8, 8, 8, 0.98);
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
     }
-    .navbar-brand { text-decoration: none; }
+
+    .navbar-brand {
+      text-decoration: none;
+    }
+
     .brand-logo {
-      width: 55px; height: 55px;
+      width: 55px;
+      height: 55px;
       border-radius: 50%;
       border: 2px solid var(--gold);
       object-fit: contain;
       background: var(--dark2);
       padding: 4px;
     }
+
     .brand-name {
       font-family: 'Playfair Display', serif;
       font-size: 1.25rem;
@@ -86,12 +116,14 @@
       color: var(--gold-light);
       line-height: 1.1;
     }
+
     .brand-tag {
       font-size: 11px;
       color: var(--muted);
       letter-spacing: 1px;
       text-transform: uppercase;
     }
+
     .nav-link {
       color: var(--text) !important;
       font-size: 14px;
@@ -101,19 +133,35 @@
       transition: color 0.3s;
       position: relative;
     }
+
     .nav-link::after {
       content: '';
       position: absolute;
-      bottom: 0; left: 50%;
-      width: 0; height: 2px;
+      bottom: 0;
+      left: 50%;
+      width: 0;
+      height: 2px;
       background: var(--gold-light);
       transition: all 0.3s;
       transform: translateX(-50%);
     }
-    .nav-link:hover { color: var(--gold-light) !important; }
-    .nav-link:hover::after { width: 60%; }
-    .nav-link.active-link { color: var(--gold-light) !important; }
-    .nav-link.active-link::after { width: 60%; }
+
+    .nav-link:hover {
+      color: var(--gold-light) !important;
+    }
+
+    .nav-link:hover::after {
+      width: 60%;
+    }
+
+    .nav-link.active-link {
+      color: var(--gold-light) !important;
+    }
+
+    .nav-link.active-link::after {
+      width: 60%;
+    }
+
     .btn-book {
       background: var(--gold);
       color: #111 !important;
@@ -124,19 +172,17 @@
       padding: 0.55rem 1.4rem;
       transition: all 0.3s;
     }
+
     .btn-book:hover {
       background: var(--gold-light);
       transform: translateY(-2px);
-      box-shadow: 0 8px 20px rgba(201,146,42,0.3);
+      box-shadow: 0 8px 20px rgba(201, 146, 42, 0.3);
     }
 
-    /* ──────────────────────────────────
-       HERO
-    ────────────────────────────────── */
     .hero {
       min-height: 100vh;
       background:
-        linear-gradient(135deg, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.75) 60%, rgba(0,0,0,0.9) 100%),
+        linear-gradient(135deg, rgba(0, 0, 0, 0.92) 0%, rgba(0, 0, 0, 0.75) 60%, rgba(0, 0, 0, 0.9) 100%),
         url('https://images.unsplash.com/photo-1581578731548-c64695cc6952?q=80&w=1600');
       background-size: cover;
       background-position: center;
@@ -146,19 +192,23 @@
       position: relative;
       overflow: hidden;
     }
+
     .hero::before {
       content: '';
       position: absolute;
-      top: -50%; left: -20%;
-      width: 600px; height: 600px;
-      background: radial-gradient(circle, rgba(201,146,42,0.08) 0%, transparent 70%);
+      top: -50%;
+      left: -20%;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(201, 146, 42, 0.08) 0%, transparent 70%);
       pointer-events: none;
     }
+
     .hero-badge {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      background: rgba(201,146,42,0.12);
+      background: rgba(201, 146, 42, 0.12);
       border: 1px solid var(--border);
       border-radius: 30px;
       padding: 6px 16px;
@@ -168,28 +218,54 @@
       color: var(--gold-light);
       margin-bottom: 1.5rem;
     }
-    .hero-badge span { width: 6px; height: 6px; border-radius: 50%; background: var(--gold-light); display: inline-block; }
+
+    .hero-badge span {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--gold-light);
+      display: inline-block;
+    }
+
     .hero-title {
       font-size: clamp(2.5rem, 6vw, 4.5rem);
       font-weight: 900;
       line-height: 1.05;
       letter-spacing: -1px;
     }
-    .hero-title em { font-style: italic; color: var(--gold-light); }
+
+    .hero-title em {
+      font-style: italic;
+      color: var(--gold-light);
+    }
+
     #typing-text {
       font-size: 1.1rem;
       color: #aaa;
       min-height: 30px;
       margin-top: 1.2rem;
     }
+
     .cursor {
       display: inline-block;
-      width: 2px; height: 1.1em;
+      width: 2px;
+      height: 1.1em;
       background: var(--gold-light);
       vertical-align: middle;
       animation: blink 0.8s infinite;
     }
-    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+
+    @keyframes blink {
+
+      0%,
+      100% {
+        opacity: 1
+      }
+
+      50% {
+        opacity: 0
+      }
+    }
 
     .hero-stats {
       display: flex;
@@ -198,6 +274,7 @@
       padding-top: 2rem;
       border-top: 1px solid var(--border);
     }
+
     .stat-num {
       font-family: 'Playfair Display', serif;
       font-size: 1.8rem;
@@ -205,7 +282,12 @@
       color: var(--gold-light);
       line-height: 1;
     }
-    .stat-label { font-size: 12px; color: var(--muted); margin-top: 4px; }
+
+    .stat-label {
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 4px;
+    }
 
     .btn-hero-primary {
       background: var(--gold);
@@ -221,12 +303,14 @@
       align-items: center;
       gap: 8px;
     }
+
     .btn-hero-primary:hover {
       background: var(--gold-light);
       color: #111;
       transform: translateY(-3px);
-      box-shadow: 0 12px 30px rgba(201,146,42,0.35);
+      box-shadow: 0 12px 30px rgba(201, 146, 42, 0.35);
     }
+
     .btn-hero-wa {
       background: transparent;
       color: var(--success);
@@ -241,16 +325,14 @@
       align-items: center;
       gap: 8px;
     }
+
     .btn-hero-wa:hover {
       background: var(--success);
       color: #fff;
       transform: translateY(-3px);
-      box-shadow: 0 12px 30px rgba(37,211,102,0.25);
+      box-shadow: 0 12px 30px rgba(37, 211, 102, 0.25);
     }
 
-    /* ──────────────────────────────────
-       SECTION SHARED
-    ────────────────────────────────── */
     .section-label {
       display: inline-flex;
       align-items: center;
@@ -261,22 +343,24 @@
       color: var(--gold);
       margin-bottom: 1rem;
     }
+
     .section-label::before {
       content: '';
       display: inline-block;
-      width: 30px; height: 1px;
+      width: 30px;
+      height: 1px;
       background: var(--gold);
     }
+
     .section-title {
       font-size: clamp(2rem, 4vw, 2.8rem);
       font-weight: 800;
       line-height: 1.1;
     }
 
-    /* ──────────────────────────────────
-       SERVICES
-    ────────────────────────────────── */
-    #services { background: var(--dark); }
+    #services {
+      background: var(--dark);
+    }
 
     .service-card {
       background: var(--dark2);
@@ -291,27 +375,39 @@
       transform: translateY(40px);
       cursor: pointer;
     }
-    .service-card.show-card { opacity: 1; transform: translateY(0); }
+
+    .service-card.show-card {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
     .service-card::before {
       content: '';
       position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 3px;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
       background: linear-gradient(90deg, transparent, var(--gold), transparent);
       transform: scaleX(0);
       transition: transform 0.4s ease;
     }
-    .service-card:hover::before { transform: scaleX(1); }
+
+    .service-card:hover::before {
+      transform: scaleX(1);
+    }
+
     .service-card:hover {
-      border-color: rgba(201,146,42,0.5);
+      border-color: rgba(201, 146, 42, 0.5);
       transform: translateY(-8px);
-      box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
       background: var(--dark3);
     }
 
     .svc-icon-wrap {
-      width: 70px; height: 70px;
-      background: rgba(201,146,42,0.1);
+      width: 70px;
+      height: 70px;
+      background: rgba(201, 146, 42, 0.1);
       border: 1px solid var(--border);
       border-radius: 14px;
       display: flex;
@@ -320,18 +416,30 @@
       margin-bottom: 1.4rem;
       transition: all 0.3s;
     }
+
     .service-card:hover .svc-icon-wrap {
-      background: rgba(201,146,42,0.2);
+      background: rgba(201, 146, 42, 0.2);
       border-color: var(--gold);
     }
-    .svc-icon { font-size: 28px; color: var(--gold-light); }
+
+    .svc-icon {
+      font-size: 28px;
+      color: var(--gold-light);
+    }
+
     .svc-title {
       font-family: 'Playfair Display', serif;
       font-size: 1.2rem;
       font-weight: 700;
       margin-bottom: 0.6rem;
     }
-    .svc-desc { font-size: 14px; color: var(--muted); line-height: 1.6; }
+
+    .svc-desc {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
     .svc-link {
       display: inline-flex;
       align-items: center;
@@ -343,12 +451,16 @@
       margin-top: 1.2rem;
       transition: gap 0.3s;
     }
-    .svc-link:hover { gap: 10px; color: var(--gold-light); }
 
-    /* ──────────────────────────────────
-       WHY US
-    ────────────────────────────────── */
-    #why { background: var(--black); }
+    .svc-link:hover {
+      gap: 10px;
+      color: var(--gold-light);
+    }
+
+    #why {
+      background: var(--black);
+    }
+
     .why-item {
       display: flex;
       align-items: flex-start;
@@ -358,13 +470,17 @@
       border: 1px solid transparent;
       transition: all 0.3s;
     }
+
     .why-item:hover {
       border-color: var(--border);
       background: var(--dark2);
     }
+
     .why-icon {
-      width: 48px; height: 48px; flex-shrink: 0;
-      background: rgba(201,146,42,0.1);
+      width: 48px;
+      height: 48px;
+      flex-shrink: 0;
+      background: rgba(201, 146, 42, 0.1);
       border-radius: 10px;
       display: flex;
       align-items: center;
@@ -372,42 +488,79 @@
       font-size: 20px;
       color: var(--gold-light);
     }
-    .why-title { font-size: 15px; font-weight: 600; margin-bottom: 4px; }
-    .why-desc { font-size: 13px; color: var(--muted); line-height: 1.5; }
 
-    /* ──────────────────────────────────
-       CONTACT / BOOKING FORM
-    ────────────────────────────────── */
-    #contact { background: var(--dark); }
+    .why-title {
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .why-desc {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    #contact {
+      background: var(--dark);
+    }
+
     .contact-card {
       background: var(--dark2);
       border: 1px solid var(--border);
       border-radius: 20px;
       overflow: hidden;
     }
+
     .contact-side {
-      background: linear-gradient(160deg, rgba(201,146,42,0.15), rgba(0,0,0,0.3)),
-                  var(--dark3);
+      background: linear-gradient(160deg, rgba(201, 146, 42, 0.15), rgba(0, 0, 0, 0.3)),
+        var(--dark3);
       padding: 2.5rem;
       border-right: 1px solid var(--border);
     }
+
     .contact-info-item {
       display: flex;
       align-items: center;
       gap: 12px;
       margin-bottom: 1.4rem;
       padding: 1rem;
-      background: rgba(255,255,255,0.03);
+      background: rgba(255, 255, 255, 0.03);
       border-radius: 10px;
       border: 1px solid var(--border);
     }
-    .contact-info-item i { font-size: 20px; color: var(--gold-light); }
-    .ci-label { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; }
-    .ci-value { font-size: 14px; font-weight: 500; }
-    .contact-form-wrap { padding: 2.5rem; }
 
-    .form-label { font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: var(--muted); margin-bottom: 6px; }
-    .form-control, .form-select {
+    .contact-info-item i {
+      font-size: 20px;
+      color: var(--gold-light);
+    }
+
+    .ci-label {
+      font-size: 11px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .ci-value {
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .contact-form-wrap {
+      padding: 2.5rem;
+    }
+
+    .form-label {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    .form-control,
+    .form-select {
       background: var(--dark3);
       border: 1px solid #333;
       color: var(--text);
@@ -417,15 +570,23 @@
       font-size: 14px;
       transition: border-color 0.3s, box-shadow 0.3s;
     }
-    .form-control:focus, .form-select:focus {
+
+    .form-control:focus,
+    .form-select:focus {
       background: var(--dark3);
       color: var(--text);
       border-color: var(--gold);
-      box-shadow: 0 0 0 3px rgba(201,146,42,0.12);
+      box-shadow: 0 0 0 3px rgba(201, 146, 42, 0.12);
       outline: none;
     }
-    .form-control::placeholder { color: #555; }
-    .form-select option { background: var(--dark3); }
+
+    .form-control::placeholder {
+      color: #555;
+    }
+
+    .form-select option {
+      background: var(--dark3);
+    }
 
     .btn-submit {
       background: var(--gold);
@@ -441,30 +602,44 @@
       position: relative;
       overflow: hidden;
     }
+
     .btn-submit:hover {
       background: var(--gold-light);
       transform: translateY(-2px);
-      box-shadow: 0 10px 30px rgba(201,146,42,0.3);
+      box-shadow: 0 10px 30px rgba(201, 146, 42, 0.3);
     }
-    .btn-submit:disabled { opacity: 0.7; cursor: not-allowed; transform: none; }
+
+    .btn-submit:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+      transform: none;
+    }
+
     .btn-submit .spinner {
       display: none;
-      width: 18px; height: 18px;
-      border: 2px solid rgba(0,0,0,0.3);
+      width: 18px;
+      height: 18px;
+      border: 2px solid rgba(0, 0, 0, 0.3);
       border-top-color: #111;
       border-radius: 50%;
       animation: spin 0.7s linear infinite;
       vertical-align: middle;
       margin-right: 8px;
     }
-    @keyframes spin { to { transform: rotate(360deg); } }
 
-    /* Status Toast */
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
     .toast-wrap {
       position: fixed;
-      bottom: 2rem; right: 2rem;
+      bottom: 2rem;
+      right: 2rem;
       z-index: 9999;
     }
+
     .toast-msg {
       background: var(--dark2);
       border: 1px solid var(--border);
@@ -474,41 +649,77 @@
       align-items: center;
       gap: 12px;
       font-size: 14px;
-      box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
       transform: translateY(100px);
       opacity: 0;
       transition: all 0.4s ease;
     }
-    .toast-msg.show { transform: translateY(0); opacity: 1; }
-    .toast-msg.success { border-color: rgba(37,211,102,0.4); }
-    .toast-msg.error   { border-color: rgba(220,53,69,0.4); }
-    .toast-icon { font-size: 20px; }
 
-    /* ──────────────────────────────────
-       MODAL
-    ────────────────────────────────── */
+    .toast-msg.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .toast-msg.success {
+      border-color: rgba(37, 211, 102, 0.4);
+    }
+
+    .toast-msg.error {
+      border-color: rgba(220, 53, 69, 0.4);
+    }
+
+    .toast-icon {
+      font-size: 20px;
+    }
+
     .modal-content {
       background: var(--dark2);
       border: 1px solid var(--border);
       border-radius: 20px;
       color: var(--text);
     }
-    .modal-header { border-bottom: 1px solid var(--border); }
-    .modal-body ul li { padding: 4px 0; font-size: 14px; color: var(--muted); }
-    .modal-body ul li::before { content: '✦ '; color: var(--gold); font-size: 10px; }
 
-    /* ──────────────────────────────────
-       FOOTER
-    ────────────────────────────────── */
+    .modal-header {
+      border-bottom: 1px solid var(--border);
+    }
+
+    .modal-body ul li {
+      padding: 4px 0;
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .modal-body ul li::before {
+      content: '✦ ';
+      color: var(--gold);
+      font-size: 10px;
+    }
+
     footer {
       background: var(--black);
       border-top: 1px solid var(--border);
     }
-    .footer-logo { font-family: 'Playfair Display', serif; font-size: 1.2rem; color: var(--gold-light); }
-    .footer-links a { color: var(--muted); text-decoration: none; font-size: 13px; transition: color 0.2s; }
-    .footer-links a:hover { color: var(--gold-light); }
+
+    .footer-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      color: var(--gold-light);
+    }
+
+    .footer-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 13px;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover {
+      color: var(--gold-light);
+    }
+
     .footer-social a {
-      width: 38px; height: 38px;
+      width: 38px;
+      height: 38px;
       border: 1px solid var(--border);
       border-radius: 8px;
       display: inline-flex;
@@ -519,17 +730,28 @@
       font-size: 16px;
       transition: all 0.3s;
     }
-    .footer-social a:hover { border-color: var(--gold); color: var(--gold-light); background: rgba(201,146,42,0.1); }
-    .footer-copy { font-size: 13px; color: #444; }
-    .footer-copy span { color: var(--gold); }
 
-    /* ──────────────────────────────────
-       SCROLL TO TOP
-    ────────────────────────────────── */
+    .footer-social a:hover {
+      border-color: var(--gold);
+      color: var(--gold-light);
+      background: rgba(201, 146, 42, 0.1);
+    }
+
+    .footer-copy {
+      font-size: 13px;
+      color: #444;
+    }
+
+    .footer-copy span {
+      color: var(--gold);
+    }
+
     #scrollTop {
       position: fixed;
-      bottom: 2rem; left: 2rem;
-      width: 44px; height: 44px;
+      bottom: 2rem;
+      left: 2rem;
+      width: 44px;
+      height: 44px;
       background: var(--gold);
       border: none;
       border-radius: 10px;
@@ -544,615 +766,536 @@
       transition: all 0.3s;
       z-index: 999;
     }
-    #scrollTop.visible { opacity: 1; transform: translateY(0); }
-    #scrollTop:hover { background: var(--gold-light); transform: translateY(-3px); }
 
-    /* ──────────────────────────────────
-       RESPONSIVE TWEAKS
-    ────────────────────────────────── */
+    #scrollTop.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    #scrollTop:hover {
+      background: var(--gold-light);
+      transform: translateY(-3px);
+    }
+
     @media(max-width:768px) {
-      .hero-stats { gap: 1.5rem; }
-      .contact-side { border-right: none; border-bottom: 1px solid var(--border); }
+      .hero-stats {
+        gap: 1.5rem;
+      }
+
+      .contact-side {
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+      }
     }
   </style>
 </head>
+
 <body>
 
-<!-- ══════════════════════════════════
-     NAVBAR
-══════════════════════════════════ -->
-<nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
-  <div class="container">
-
-    <a class="navbar-brand d-flex align-items-center gap-3" href="#">
-      <img src="logo.png" alt="Milisam Logo" class="brand-logo"/>
-      <div>
-        <div class="brand-name">Milisam Enterprise</div>
-        <div class="brand-tag">Pure & Pristine: Your Space. Our Expertise.</div>
-      </div>
-    </a>
-
-    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1">
-        <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
-        <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
-        <li class="nav-item"><a class="nav-link" href="#why">Why Us</a></li>
-        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
-        <li class="nav-item ms-lg-2">
-          <a href="#contact" class="btn btn-book">Book Now</a>
-        </li>
-      </ul>
-    </div>
-
-  </div>
-</nav>
-
-<!-- ══════════════════════════════════
-     HERO
-══════════════════════════════════ -->
-<section class="hero" id="home">
-  <div class="container">
-    <div class="row align-items-center">
-      <div class="col-lg-8">
-
-        <div class="hero-badge">
-          <span></span> Nairobi's Trusted Cleaning Company
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center gap-3" href="#">
+        <img src="logo.png" alt="Milisam Logo" class="brand-logo" />
+        <div>
+          <div class="brand-name">Milisam Enterprise</div>
+          <div class="brand-tag">Pure & Pristine: Your Space. Our Expertise.</div>
         </div>
-
-        <h1 class="hero-title">
-          Milisam<br/>
-          <em>Enterprise</em>
-        </h1>
-
-        <p id="typing-text"><span class="cursor"></span></p>
-
-        <div class="d-flex flex-wrap gap-3 mt-4">
-          <a href="#services" class="btn-hero-primary">
-            <i class="bi bi-grid-3x3-gap-fill"></i> Explore Services
-          </a>
-          <a href="https://wa.me/254726921163" target="_blank" class="btn-hero-wa">
-            <i class="bi bi-whatsapp"></i> WhatsApp Us
-          </a>
-        </div>
-
-        <div class="hero-stats">
-          <div>
-            <div class="stat-num">500+</div>
-            <div class="stat-label">Clients Served</div>
-          </div>
-          <div>
-            <div class="stat-num">8+</div>
-            <div class="stat-label">Years Experience</div>
-          </div>
-          <div>
-            <div class="stat-num">100%</div>
-            <div class="stat-label">Satisfaction Rate</div>
-          </div>
-        </div>
-
+      </a>
+      <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1">
+          <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
+          <li class="nav-item"><a class="nav-link" href="#why">Why Us</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+          <li class="nav-item ms-lg-2">
+            <a href="#contact" class="btn btn-book">Book Now</a>
+          </li>
+        </ul>
       </div>
     </div>
-  </div>
-</section>
+  </nav>
 
-<!-- ══════════════════════════════════
-     SERVICES
-══════════════════════════════════ -->
-<section class="py-5" id="services">
-  <div class="container py-5">
-
-    <div class="row justify-content-center text-center mb-5">
-      <div class="col-lg-7">
-        <div class="section-label mx-auto" style="justify-content:center;">What We Do</div>
-        <h2 class="section-title">Our Professional Services</h2>
-        <p class="mt-3" style="color:var(--muted);font-size:15px;">
-          From spotless spaces to enterprise support — we handle it all with precision and care.
-        </p>
-      </div>
-    </div>
-
-    <div class="row g-4">
-
-      <!-- Cleaning -->
-      <div class="col-12 col-sm-6 col-xl-3">
-        <div class="service-card" data-service="cleaning" onclick="openModal('cleaning')">
-          <div class="svc-icon-wrap">
-            <i class="bi bi-bucket-fill svc-icon"></i>
+  <section class="hero" id="home">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-8">
+          <div class="hero-badge">
+            <span></span> Nairobi's Trusted Cleaning Company
           </div>
-          <div class="svc-title">Cleaning Services</div>
-          <p class="svc-desc">Residential, office and commercial deep cleaning tailored to your schedule.</p>
-          <a class="svc-link">Learn More <i class="bi bi-arrow-right"></i></a>
-        </div>
-      </div>
-
-      <!-- Business -->
-      <div class="col-12 col-sm-6 col-xl-3">
-        <div class="service-card" data-service="business" onclick="openModal('business')">
-          <div class="svc-icon-wrap">
-            <i class="bi bi-briefcase-fill svc-icon"></i>
+          <h1 class="hero-title">
+            Milisam<br />
+            <em>Enterprise</em>
+          </h1>
+          <p id="typing-text"><span class="cursor"></span></p>
+          <div class="d-flex flex-wrap gap-3 mt-4">
+            <a href="#services" class="btn-hero-primary">
+              <i class="bi bi-grid-3x3-gap-fill"></i> Explore Services
+            </a>
+            <a href="https://wa.me/254726921163" target="_blank" class="btn-hero-wa">
+              <i class="bi bi-whatsapp"></i> WhatsApp Us
+            </a>
           </div>
-          <div class="svc-title">Business Solutions</div>
-          <p class="svc-desc">Enterprise workspace management, support services and outsourced cleaning contracts.</p>
-          <a class="svc-link">Learn More <i class="bi bi-arrow-right"></i></a>
-        </div>
-      </div>
-
-      <!-- Products -->
-      <div class="col-12 col-sm-6 col-xl-3">
-        <div class="service-card" data-service="products" onclick="openModal('products')">
-          <div class="svc-icon-wrap">
-            <i class="bi bi-cart-fill svc-icon"></i>
-          </div>
-          <div class="svc-title">Cleaning Products</div>
-          <p class="svc-desc">Quality detergents, disinfectants and sanitation supplies for homes and businesses.</p>
-          <a class="svc-link">Learn More <i class="bi bi-arrow-right"></i></a>
-        </div>
-      </div>
-
-      <!-- Maintenance -->
-      <div class="col-12 col-sm-6 col-xl-3">
-        <div class="service-card" data-service="maintenance" onclick="openModal('maintenance')">
-          <div class="svc-icon-wrap">
-            <i class="bi bi-tools svc-icon"></i>
-          </div>
-          <div class="svc-title">Maintenance</div>
-          <p class="svc-desc">Plumbing, repairs and technical support to keep your premises in top condition.</p>
-          <a class="svc-link">Learn More <i class="bi bi-arrow-right"></i></a>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- ══════════════════════════════════
-     WHY US
-══════════════════════════════════ -->
-<section class="py-5" id="why">
-  <div class="container py-5">
-    <div class="row align-items-center g-5">
-
-      <div class="col-lg-5">
-        <div class="section-label">Why Choose Us</div>
-        <h2 class="section-title">Trusted by Homes & Businesses Across Nairobi</h2>
-        <p class="mt-3" style="color:var(--muted);font-size:15px;line-height:1.7;">
-          We combine professionalism, reliability and eco-friendly practices to deliver
-          results that exceed expectations — every single time.
-        </p>
-        <a href="#contact" class="btn-hero-primary mt-4" style="display:inline-flex;">
-          Book a Service <i class="bi bi-arrow-right"></i>
-        </a>
-      </div>
-
-      <div class="col-lg-7">
-        <div class="row g-3">
-
-          <div class="col-md-6">
-            <div class="why-item">
-              <div class="why-icon"><i class="bi bi-shield-check-fill"></i></div>
-              <div>
-                <div class="why-title">Fully Vetted Staff</div>
-                <div class="why-desc">All our cleaners are background-checked, trained and uniformed professionals.</div>
-              </div>
+          <div class="hero-stats">
+            <div>
+              <div class="stat-num">500+</div>
+              <div class="stat-label">Clients Served</div>
+            </div>
+            <div>
+              <div class="stat-num">8+</div>
+              <div class="stat-label">Years Experience</div>
+            </div>
+            <div>
+              <div class="stat-num">100%</div>
+              <div class="stat-label">Satisfaction Rate</div>
             </div>
           </div>
-
-          <div class="col-md-6">
-            <div class="why-item">
-              <div class="why-icon"><i class="bi bi-clock-fill"></i></div>
-              <div>
-                <div class="why-title">Always On Time</div>
-                <div class="why-desc">We respect your time. Our teams arrive promptly as scheduled, every visit.</div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-6">
-            <div class="why-item">
-              <div class="why-icon"><i class="bi bi-leaf-fill"></i></div>
-              <div>
-                <div class="why-title">Eco-Friendly Products</div>
-                <div class="why-desc">We use safe, biodegradable products that protect your family and the environment.</div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-6">
-            <div class="why-item">
-              <div class="why-icon"><i class="bi bi-headset"></i></div>
-              <div>
-                <div class="why-title">24/7 Support</div>
-                <div class="why-desc">Our customer support team is always available via WhatsApp, call or email.</div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-6">
-            <div class="why-item">
-              <div class="why-icon"><i class="bi bi-currency-dollar"></i></div>
-              <div>
-                <div class="why-title">Transparent Pricing</div>
-                <div class="why-desc">No hidden fees. Clear, competitive rates with flexible packages for every budget.</div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-6">
-            <div class="why-item">
-              <div class="why-icon"><i class="bi bi-patch-check-fill"></i></div>
-              <div>
-                <div class="why-title">Satisfaction Guarantee</div>
-                <div class="why-desc">Not satisfied? We come back and re-clean at no extra charge. That's our promise.</div>
-              </div>
-            </div>
-          </div>
-
         </div>
       </div>
-
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ══════════════════════════════════
-     CONTACT / BOOKING FORM
-══════════════════════════════════ -->
-<section class="py-5" id="contact">
-  <div class="container py-5">
-
-    <div class="row justify-content-center text-center mb-5">
-      <div class="col-lg-6">
-        <div class="section-label mx-auto" style="justify-content:center;">Get In Touch</div>
-        <h2 class="section-title">Book Our Services</h2>
-        <p class="mt-3" style="color:var(--muted);font-size:15px;">
-          Fill in the form below and we'll get back to you within 1 hour.
-        </p>
+  <section class="py-5" id="services">
+    <div class="container py-5">
+      <div class="row justify-content-center text-center mb-5">
+        <div class="col-lg-7">
+          <div class="section-label mx-auto" style="justify-content:center;">What We Do</div>
+          <h2 class="section-title">Our Professional Services</h2>
+          <p class="mt-3" style="color:var(--muted);font-size:15px;">
+            From spotless spaces to enterprise support — we handle it all with precision and care.
+          </p>
+        </div>
       </div>
-    </div>
-
-    <div class="row justify-content-center">
-      <div class="col-lg-11">
-        <div class="contact-card">
-          <div class="row g-0">
-
-            <!-- LEFT SIDE INFO -->
-            <div class="col-lg-4 contact-side">
-              <h4 class="gold-text mb-4">Contact Information</h4>
-
-              <div class="contact-info-item">
-                <i class="bi bi-telephone-fill"></i>
-                <div>
-                  <div class="ci-label">Phone / WhatsApp</div>
-                  <div class="ci-value">+254 726 921 163</div>
-                </div>
-              </div>
-
-              <div class="contact-info-item">
-                <i class="bi bi-envelope-fill"></i>
-                <div>
-                  <div class="ci-label">Email</div>
-                  <div class="ci-value">info@milisamenterprise.co.ke</div>
-                </div>
-              </div>
-
-              <div class="contact-info-item">
-                <i class="bi bi-geo-alt-fill"></i>
-                <div>
-                  <div class="ci-label">Location</div>
-                  <div class="ci-value">Nairobi, Kenya</div>
-                </div>
-              </div>
-
-              <div class="contact-info-item">
-                <i class="bi bi-clock-fill"></i>
-                <div>
-                  <div class="ci-label">Working Hours</div>
-                  <div class="ci-value">Mon – Sat, 7am – 7pm</div>
-                </div>
-              </div>
-
-              <div class="mt-4">
-                <a href="https://wa.me/254726921163?text=Hello%20Milisam%20Enterprise,%20I%20would%20like%20to%20book%20a%20service"
-                   target="_blank" class="btn-hero-wa d-inline-flex" style="font-size:14px;padding:0.65rem 1.4rem;">
-                  <i class="bi bi-whatsapp"></i> Chat on WhatsApp
-                </a>
-              </div>
-            </div>
-
-            <!-- RIGHT SIDE FORM -->
-            <div class="col-lg-8 contact-form-wrap">
-              <h4 class="mb-4" style="font-family:'Playfair Display',serif;">Send a Booking Request</h4>
-
-              <form id="bookingForm" novalidate>
-
-                <div class="row g-3">
-
-                  <div class="col-md-6">
-                    <label class="form-label">Full Name *</label>
-                    <input type="text" class="form-control" id="fullName" placeholder="e.g. Jane Mwangi" required/>
-                    <div class="invalid-feedback">Please enter your full name.</div>
-                  </div>
-
-                  <div class="col-md-6">
-                    <label class="form-label">Phone Number *</label>
-                    <input type="tel" class="form-control" id="phone" placeholder="e.g. 0712 345 678" required/>
-                    <div class="invalid-feedback">Please enter a valid phone number.</div>
-                  </div>
-
-                  <div class="col-md-6">
-                    <label class="form-label">Email Address</label>
-                    <input type="email" class="form-control" id="email" placeholder="e.g. jane@email.com"/>
-                  </div>
-
-                  <div class="col-md-6">
-                    <label class="form-label">Service Required *</label>
-                    <select class="form-select" id="service" required>
-                      <option value="" disabled selected>Select a service…</option>
-                      <option value="cleaning">Cleaning Services</option>
-                      <option value="business">Business Solutions</option>
-                      <option value="products">Cleaning Products</option>
-                      <option value="maintenance">Maintenance</option>
-                      <option value="other">Other</option>
-                    </select>
-                    <div class="invalid-feedback">Please select a service.</div>
-                  </div>
-
-                  <div class="col-md-6">
-                    <label class="form-label">Preferred Date</label>
-                    <input type="date" class="form-control" id="preferredDate"/>
-                  </div>
-
-                  <div class="col-md-6">
-                    <label class="form-label">Location / Area</label>
-                    <input type="text" class="form-control" id="location" placeholder="e.g. Westlands, Nairobi"/>
-                  </div>
-
-                  <div class="col-12">
-                    <label class="form-label">Additional Details</label>
-                    <textarea class="form-control" id="message" rows="4"
-                      placeholder="Describe your space, any special requirements…"></textarea>
-                  </div>
-
-                  <div class="col-12 mt-2">
-                    <button type="submit" class="btn-submit" id="submitBtn">
-                      <span class="spinner" id="spinner"></span>
-                      <span id="btnText">Send Booking Request</span>
-                    </button>
-                  </div>
-
-                </div>
-
-              </form>
-            </div>
-
+      <div class="row g-4">
+        <div class="col-12 col-sm-6 col-xl-3">
+          <div class="service-card" data-service="cleaning" onclick="openModal('cleaning')">
+            <div class="svc-icon-wrap"><i class="bi bi-bucket-fill svc-icon"></i></div>
+            <div class="svc-title">Cleaning Services</div>
+            <p class="svc-desc">Residential, office and commercial deep cleaning tailored to your schedule.</p>
+            <a class="svc-link">Learn More <i class="bi bi-arrow-right"></i></a>
+          </div>
+        </div>
+        <div class="col-12 col-sm-6 col-xl-3">
+          <div class="service-card" data-service="business" onclick="openModal('business')">
+            <div class="svc-icon-wrap"><i class="bi bi-briefcase-fill svc-icon"></i></div>
+            <div class="svc-title">Business Solutions</div>
+            <p class="svc-desc">Enterprise workspace management, support services and outsourced cleaning contracts.</p>
+            <a class="svc-link">Learn More <i class="bi bi-arrow-right"></i></a>
+          </div>
+        </div>
+        <div class="col-12 col-sm-6 col-xl-3">
+          <div class="service-card" data-service="products" onclick="openModal('products')">
+            <div class="svc-icon-wrap"><i class="bi bi-cart-fill svc-icon"></i></div>
+            <div class="svc-title">Cleaning Products</div>
+            <p class="svc-desc">Quality detergents, disinfectants and sanitation supplies for homes and businesses.</p>
+            <a class="svc-link">Learn More <i class="bi bi-arrow-right"></i></a>
+          </div>
+        </div>
+        <div class="col-12 col-sm-6 col-xl-3">
+          <div class="service-card" data-service="maintenance" onclick="openModal('maintenance')">
+            <div class="svc-icon-wrap"><i class="bi bi-tools svc-icon"></i></div>
+            <div class="svc-title">Maintenance</div>
+            <p class="svc-desc">we only offer fumigation services</p>
+            <a class="svc-link">Learn More <i class="bi bi-arrow-right"></i></a>
           </div>
         </div>
       </div>
     </div>
+  </section>
 
-  </div>
-</section>
-
-<!-- ══════════════════════════════════
-     FOOTER
-══════════════════════════════════ -->
-<footer class="py-5">
-  <div class="container">
-    <div class="row g-4 mb-4">
-
-      <div class="col-lg-4">
-        <div class="footer-logo mb-2">Milisam Enterprise</div>
-        <p style="color:var(--muted);font-size:13px;line-height:1.7;">
-          Nairobi's trusted cleaning and enterprise service company. We deliver spotless results with professionalism you can count on.
-        </p>
-      </div>
-
-      <div class="col-lg-2 col-6">
-        <div style="font-size:13px;font-weight:600;margin-bottom:1rem;color:#666;text-transform:uppercase;letter-spacing:1px;">Quick Links</div>
-        <div class="footer-links d-flex flex-column gap-2">
-          <a href="#home">Home</a>
-          <a href="#services">Services</a>
-          <a href="#why">Why Us</a>
-          <a href="#contact">Contact</a>
-        </div>
-      </div>
-
-      <div class="col-lg-3 col-6">
-        <div style="font-size:13px;font-weight:600;margin-bottom:1rem;color:#666;text-transform:uppercase;letter-spacing:1px;">Services</div>
-        <div class="footer-links d-flex flex-column gap-2">
-          <a href="#services">Cleaning Services</a>
-          <a href="#services">Business Solutions</a>
-          <a href="#services">Cleaning Products</a>
-          <a href="#services">Maintenance</a>
-        </div>
-      </div>
-
-      <div class="col-lg-3">
-        <div style="font-size:13px;font-weight:600;margin-bottom:1rem;color:#666;text-transform:uppercase;letter-spacing:1px;">Follow Us</div>
-        <div class="footer-social d-flex gap-2">
-          <a href="#" title="Facebook"><i class="bi bi-facebook"></i></a>
-          <a href="#" title="Instagram"><i class="bi bi-instagram"></i></a>
-          <a href="https://wa.me/254726921163" target="_blank" title="WhatsApp"><i class="bi bi-whatsapp"></i></a>
-          <a href="mailto:info@milisamenterprise.co.ke" title="Email"><i class="bi bi-envelope-fill"></i></a>
-        </div>
-        <div class="mt-3" style="font-size:13px;color:var(--muted);">
-          <i class="bi bi-telephone-fill" style="color:var(--gold);margin-right:6px;"></i>
-          +254 726 921 163
-        </div>
-      </div>
-
-    </div>
-
-    <div class="border-top pt-4 d-flex flex-wrap justify-content-between align-items-center gap-3" style="border-color:var(--border) !important;">
-      <div class="footer-copy">© 2026 <span>Milisam Enterprise</span>. All Rights Reserved.</div>
-      <div class="footer-copy">Built with <span>♥</span> in Nairobi, Kenya</div>
-    </div>
-
-  </div>
-</footer>
-
-<!-- ══════════════════════════════════
-     SERVICE MODAL
-══════════════════════════════════ -->
-<div class="modal fade" id="serviceModal" tabindex="-1">
-  <div class="modal-dialog modal-lg modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="gold-text fw-bold" id="modalTitle">Service Details</h4>
-        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
-      </div>
-      <div class="modal-body p-4">
-        <div id="modalBody"></div>
-        <div class="text-center mt-4 d-flex flex-wrap gap-3 justify-content-center">
-          <a href="https://wa.me/254726921163?text=Hello%20Milisam%20Enterprise,%20I%20would%20like%20to%20book%20your%20services"
-             target="_blank" class="btn-hero-wa d-inline-flex">
-            <i class="bi bi-whatsapp"></i> WhatsApp Booking
-          </a>
-          <a href="#contact" data-bs-dismiss="modal" class="btn-hero-primary d-inline-flex">
-            <i class="bi bi-calendar-check"></i> Book Online
+  <section class="py-5" id="why">
+    <div class="container py-5">
+      <div class="row align-items-center g-5">
+        <div class="col-lg-5">
+          <div class="section-label">Why Choose Us</div>
+          <h2 class="section-title">Trusted by Homes & Businesses Across Nairobi</h2>
+          <p class="mt-3" style="color:var(--muted);font-size:15px;line-height:1.7;">
+            We combine professionalism, reliability and eco-friendly practices to deliver
+            results that exceed expectations — every single time.
+          </p>
+          <a href="#contact" class="btn-hero-primary mt-4" style="display:inline-flex;">
+            Book a Service <i class="bi bi-arrow-right"></i>
           </a>
         </div>
+        <div class="col-lg-7">
+          <div class="row g-3">
+            <div class="col-md-6">
+              <div class="why-item">
+                <div class="why-icon"><i class="bi bi-shield-check-fill"></i></div>
+                <div>
+                  <div class="why-title">Fully Vetted Staff</div>
+                  <div class="why-desc">All our cleaners are background-checked, trained and uniformed professionals.
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="why-item">
+                <div class="why-icon"><i class="bi bi-clock-fill"></i></div>
+                <div>
+                  <div class="why-title">Always On Time</div>
+                  <div class="why-desc">We respect your time. Our teams arrive promptly as scheduled, every visit.</div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="why-item">
+                <div class="why-icon"><i class="bi bi-leaf-fill"></i></div>
+                <div>
+                  <div class="why-title">Eco-Friendly Products</div>
+                  <div class="why-desc">We use safe, biodegradable products that protect your family and the
+                    environment.</div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="why-item">
+                <div class="why-icon"><i class="bi bi-headset"></i></div>
+                <div>
+                  <div class="why-title">24/7 Support</div>
+                  <div class="why-desc">Our customer support team is always available via WhatsApp, call or email.</div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="why-item">
+                <div class="why-icon"><i class="bi bi-currency-dollar"></i></div>
+                <div>
+                  <div class="why-title">Transparent Pricing</div>
+                  <div class="why-desc">No hidden fees. Clear, competitive rates with flexible packages for every
+                    budget.</div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="why-item">
+                <div class="why-icon"><i class="bi bi-patch-check-fill"></i></div>
+                <div>
+                  <div class="why-title">Satisfaction Guarantee</div>
+                  <div class="why-desc">Not satisfied? We come back and re-clean at no extra charge. That's our promise.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-5" id="contact">
+    <div class="container py-5">
+      <div class="row justify-content-center text-center mb-5">
+        <div class="col-lg-6">
+          <div class="section-label mx-auto" style="justify-content:center;">Get In Touch</div>
+          <h2 class="section-title">Book Our Services</h2>
+          <p class="mt-3" style="color:var(--muted);font-size:15px;">
+            Fill in the form below and we'll get back to you within 1 hour.
+          </p>
+        </div>
+      </div>
+      <div class="row justify-content-center">
+        <div class="col-lg-11">
+          <div class="contact-card">
+            <div class="row g-0">
+              <div class="col-lg-4 contact-side">
+                <h4 class="gold-text mb-4">Contact Information</h4>
+                <div class="contact-info-item">
+                  <i class="bi bi-telephone-fill"></i>
+                  <div>
+                    <div class="ci-label">Phone / WhatsApp</div>
+                    <div class="ci-value">+254 726 921 163</div>
+                  </div>
+                </div>
+                <div class="contact-info-item">
+                  <i class="bi bi-envelope-fill"></i>
+                  <div>
+                    <div class="ci-label">Email</div>
+                    <div class="ci-value">milisamcleaningenterprise@gmail.com</div>
+                  </div>
+                </div>
+                <div class="contact-info-item">
+                  <i class="bi bi-geo-alt-fill"></i>
+                  <div>
+                    <div class="ci-label">Location</div>
+                    <div class="ci-value">Nairobi, Kenya</div>
+                  </div>
+                </div>
+                <div class="contact-info-item">
+                  <i class="bi bi-clock-fill"></i>
+                  <div>
+                    <div class="ci-label">Working Hours</div>
+                    <div class="ci-value">Mon – Sat, 8am – 5pm</div>
+                  </div>
+                </div>
+                <div class="mt-4">
+                  <a href="https://wa.me/254726921163?text=Hello%20Milisam%20Enterprise,%20I%20would%20like%20to%20book%20a%20service"
+                    target="_blank" class="btn-hero-wa d-inline-flex" style="font-size:14px;padding:0.65rem 1.4rem;">
+                    <i class="bi bi-whatsapp"></i> Chat on WhatsApp
+                  </a>
+                </div>
+              </div>
+              <div class="col-lg-8 contact-form-wrap">
+                <h4 class="mb-4" style="font-family:'Playfair Display',serif;">Send a Booking Request</h4>
+                <form id="bookingForm" novalidate>
+                  <div class="row g-3">
+                    <div class="col-md-6">
+                      <label class="form-label">Full Name *</label>
+                      <input type="text" class="form-control" id="fullName" placeholder="e.g. Jane Mwangi" required />
+                      <div class="invalid-feedback">Please enter your full name.</div>
+                    </div>
+                    <div class="col-md-6">
+                      <label class="form-label">Phone Number *</label>
+                      <input type="tel" class="form-control" id="phone" placeholder="e.g. 0712 345 678" required />
+                      <div class="invalid-feedback">Please enter a valid phone number.</div>
+                    </div>
+                    <div class="col-md-6">
+                      <label class="form-label">Email Address</label>
+                      <input type="email" class="form-control" id="email" placeholder="e.g. jane@email.com" />
+                    </div>
+                    <div class="col-md-6">
+                      <label class="form-label">Service Required *</label>
+                      <select class="form-select" id="service" required>
+                        <option value="" disabled selected>Select a service…</option>
+                        <option value="cleaning">Cleaning Services</option>
+                        <option value="business">Business Solutions</option>
+                        <option value="products">Cleaning Products</option>
+                        <option value="maintenance">Maintenance</option>
+                        <option value="other">Other</option>
+                      </select>
+                      <div class="invalid-feedback">Please select a service.</div>
+                    </div>
+                    <div class="col-md-6">
+                      <label class="form-label">Preferred Date</label>
+                      <input type="date" class="form-control" id="preferredDate" />
+                    </div>
+                    <div class="col-md-6">
+                      <label class="form-label">Location / Area</label>
+                      <input type="text" class="form-control" id="location" placeholder="e.g. Westlands, Nairobi" />
+                    </div>
+                    <div class="col-12">
+                      <label class="form-label">Additional Details</label>
+                      <textarea class="form-control" id="message" rows="4"
+                        placeholder="Describe your space, any special requirements…"></textarea>
+                    </div>
+                    <div class="col-12 mt-2">
+                      <button type="submit" class="btn-submit" id="submitBtn">
+                        <span class="spinner" id="spinner"></span>
+                        <span id="btnText">Send Booking Request</span>
+                      </button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="py-5">
+    <div class="container">
+      <div class="row g-4 mb-4">
+        <div class="col-lg-4">
+          <div class="footer-logo mb-2">Milisam Enterprise</div>
+          <p style="color:var(--muted);font-size:13px;line-height:1.7;">
+            Nairobi's trusted cleaning and enterprise service company. We deliver spotless results with professionalism
+            you can count on.
+          </p>
+        </div>
+        <div class="col-lg-2 col-6">
+          <div
+            style="font-size:13px;font-weight:600;margin-bottom:1rem;color:#666;text-transform:uppercase;letter-spacing:1px;">
+            Quick Links</div>
+          <div class="footer-links d-flex flex-column gap-2">
+            <a href="#home">Home</a>
+            <a href="#services">Services</a>
+            <a href="#why">Why Us</a>
+            <a href="#contact">Contact</a>
+          </div>
+        </div>
+        <div class="col-lg-3 col-6">
+          <div
+            style="font-size:13px;font-weight:600;margin-bottom:1rem;color:#666;text-transform:uppercase;letter-spacing:1px;">
+            Services</div>
+          <div class="footer-links d-flex flex-column gap-2">
+            <a href="#services">Cleaning Services</a>
+            <a href="#services">Business Solutions</a>
+            <a href="#services">Cleaning Products</a>
+            <a href="#services">Maintenance</a>
+          </div>
+        </div>
+        <div class="col-lg-3">
+          <div
+            style="font-size:13px;font-weight:600;margin-bottom:1rem;color:#666;text-transform:uppercase;letter-spacing:1px;">
+            Follow Us</div>
+          <div class="footer-social d-flex gap-2">
+            <a href="https://www.facebook.com/people/Milisam-Cleaning-Enterprise/100090906092115/#" title="Facebook"><i class="bi bi-facebook"></i></a>
+            <a href="#" title="Instagram"><i class="bi bi-instagram"></i></a>
+            <a href="https://wa.me/254726921163" target="_blank" title="WhatsApp"><i class="bi bi-whatsapp"></i></a>
+            <a href="mailto:milisamcleaningenterprise@gmail.com" title="Email"><i class="bi bi-envelope-fill"></i></a>
+          </div>
+          <div class="mt-3" style="font-size:13px;color:var(--muted);">
+            <i class="bi bi-telephone-fill" style="color:var(--gold);margin-right:6px;"></i>
+            +254 726 921 163
+          </div>
+        </div>
+      </div>
+      <div class="border-top pt-4 d-flex flex-wrap justify-content-between align-items-center gap-3"
+        style="border-color:var(--border) !important;">
+        <div class="footer-copy">© 2026 <span>Milisam Enterprise</span>. All Rights Reserved.</div>
+        <div class="footer-copy">Built with <span>♥</span> in Nairobi, Kenya</div>
+      </div>
+    </div>
+  </footer>
+
+  <div class="modal fade" id="serviceModal" tabindex="-1">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="gold-text fw-bold" id="modalTitle">Service Details</h4>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body p-4">
+          <div id="modalBody"></div>
+          <div class="text-center mt-4 d-flex flex-wrap gap-3 justify-content-center">
+            <a href="https://wa.me/254726921163?text=Hello%20Milisam%20Enterprise,%20I%20would%20like%20to%20book%20your%20services"
+              target="_blank" class="btn-hero-wa d-inline-flex">
+              <i class="bi bi-whatsapp"></i> WhatsApp Booking
+            </a>
+            <a href="#contact" data-bs-dismiss="modal" class="btn-hero-primary d-inline-flex">
+              <i class="bi bi-calendar-check"></i> Book Online
+            </a>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
-<!-- ══════════════════════════════════
-     TOAST NOTIFICATION
-══════════════════════════════════ -->
-<div class="toast-wrap">
-  <div class="toast-msg" id="toastMsg">
-    <span class="toast-icon" id="toastIcon"></span>
-    <span id="toastText"></span>
+  <div class="toast-wrap">
+    <div class="toast-msg" id="toastMsg">
+      <span class="toast-icon" id="toastIcon"></span>
+      <span id="toastText"></span>
+    </div>
   </div>
-</div>
 
-<!-- Scroll To Top -->
-<button id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">
-  <i class="bi bi-arrow-up"></i>
-</button>
+  <button id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+    <i class="bi bi-arrow-up"></i>
+  </button>
 
-<!-- Bootstrap JS -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
-<script>
-/* ════════════════════════════════════════
-   CONFIG — point this to your backend API
-   ════════════════════════════════════════ */
-const API_CONFIG = {
-  // When your backend is ready, replace this URL with your actual endpoint
-  // e.g. 'https://api.milisamenterprise.co.ke/bookings'
-  bookingEndpoint: 'https://api.milisamenterprise.co.ke/bookings',
+  <script>
+    /* ════════════════════════════════════════
+       CONFIG — ✅ UPDATED: now points to your local backend
+       ════════════════════════════════════════ */
+    const API_CONFIG = {
+      bookingEndpoint: 'http://localhost:3000/bookings',
+      formSubmitEmail: 'milisamcleaningenterprise@gmail.com',
+      useRealAPI: true   // ✅ CHANGED: was false, now true
+    };
 
-  // Fallback: use FormSubmit while no backend exists
-  formSubmitEmail: 'YOUR_EMAIL@gmail.com',
+    /* ────────────────────────────────────────
+       NAVBAR SCROLL EFFECT
+    ──────────────────────────────────────── */
+    const navbar = document.getElementById('mainNav');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 60);
+      document.getElementById('scrollTop').classList.toggle('visible', window.scrollY > 400);
+    });
 
-  // Set to true when your real API is ready
-  useRealAPI: false
-};
+    /* ────────────────────────────────────────
+       ACTIVE NAV LINKS
+    ──────────────────────────────────────── */
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-link');
 
-/* ────────────────────────────────────────
-   NAVBAR SCROLL EFFECT
-──────────────────────────────────────── */
-const navbar = document.getElementById('mainNav');
-window.addEventListener('scroll', () => {
-  navbar.classList.toggle('scrolled', window.scrollY > 60);
-  document.getElementById('scrollTop').classList.toggle('visible', window.scrollY > 400);
-});
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(s => {
+        if (window.scrollY >= s.offsetTop - 120) current = s.id;
+      });
+      navLinks.forEach(link => {
+        link.classList.toggle('active-link', link.getAttribute('href') === '#' + current);
+      });
+    });
 
-/* ────────────────────────────────────────
-   ACTIVE NAV LINKS
-──────────────────────────────────────── */
-const sections  = document.querySelectorAll('section[id]');
-const navLinks  = document.querySelectorAll('.nav-link');
+    /* ────────────────────────────────────────
+       CARD SCROLL ANIMATION
+    ──────────────────────────────────────── */
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach((e, i) => {
+        if (e.isIntersecting) {
+          setTimeout(() => e.target.classList.add('show-card'), i * 120);
+        }
+      });
+    }, { threshold: 0.15 });
 
-window.addEventListener('scroll', () => {
-  let current = '';
-  sections.forEach(s => {
-    if (window.scrollY >= s.offsetTop - 120) current = s.id;
-  });
-  navLinks.forEach(link => {
-    link.classList.toggle('active-link', link.getAttribute('href') === '#' + current);
-  });
-});
+    document.querySelectorAll('.service-card').forEach(c => observer.observe(c));
 
-/* ────────────────────────────────────────
-   CARD SCROLL ANIMATION
-──────────────────────────────────────── */
-const observer = new IntersectionObserver(entries => {
-  entries.forEach((e, i) => {
-    if (e.isIntersecting) {
-      setTimeout(() => e.target.classList.add('show-card'), i * 120);
+    /* ────────────────────────────────────────
+       TYPING EFFECT
+    ──────────────────────────────────────── */
+    const phrases = [
+      'Professional Cleaning Services',
+      'Reliable Business Solutions',
+      'Quality Cleaning Products',
+      'Expert Maintenance Teams'
+    ];
+    let pIdx = 0, cIdx = 0, deleting = false;
+    const typingEl = document.getElementById('typing-text');
+
+    function typeEffect() {
+      const phrase = phrases[pIdx];
+      if (!deleting) {
+        typingEl.innerHTML = phrase.slice(0, ++cIdx) + '<span class="cursor"></span>';
+        if (cIdx === phrase.length) { deleting = true; setTimeout(typeEffect, 2000); return; }
+      } else {
+        typingEl.innerHTML = phrase.slice(0, --cIdx) + '<span class="cursor"></span>';
+        if (cIdx === 0) { deleting = false; pIdx = (pIdx + 1) % phrases.length; }
+      }
+      setTimeout(typeEffect, deleting ? 40 : 70);
     }
-  });
-}, { threshold: 0.15 });
+    typeEffect();
 
-document.querySelectorAll('.service-card').forEach(c => observer.observe(c));
+    /* ────────────────────────────────────────
+       SERVICE MODAL DATA
+    ──────────────────────────────────────── */
+    const serviceData = {
+      cleaning: {
+        title: 'Professional Cleaning Services',
+        icon: 'bi-bucket-fill',
+        desc: 'We provide high-quality residential, office and commercial cleaning services that leave your environment fresh, hygienic and welcoming.',
+        items: ['Home & Apartment Cleaning', 'Office & Workspace Cleaning', 'Deep Cleaning', 'Carpet & Upholstery Cleaning', 'Window & Glass Cleaning', 'Post-Construction Cleaning']
+      },
+      business: {
+        title: 'Business Solutions',
+        icon: 'bi-briefcase-fill',
+        desc: 'Comprehensive enterprise support and outsourced cleaning contracts designed for businesses of all sizes.',
+        items: ['Monthly Cleaning Contracts', 'Workspace Sanitization', 'Staff Outsourcing', 'Facility Management Support', 'Event Cleaning', 'Post-Event Cleanup']
+      },
+      products: {
+        title: 'Cleaning Products',
+        icon: 'bi-cart-fill',
+        desc: 'We supply quality detergents, disinfectants and sanitation products suitable for homes and businesses.',
+        items: ['Liquid Detergents', 'Disinfectants & Sanitizers', 'Air Fresheners', 'Mops, Brushes & Brooms', 'Dustbins & Waste Bags', 'Cleaning Accessories']
+      },
+      maintenance: {
+        title: 'Maintenance Services',
+        icon: 'bi-tools',
+        desc: 'Keep your premises in top condition with our reliable maintenance and repair services.',
+        items: ['Plumbing Repairs', 'Electrical Checks', 'Painting & Touch-Ups', 'Pest Control', 'Fumigation Services', 'General Handyman Work']
+      }
+    };
 
-/* ────────────────────────────────────────
-   TYPING EFFECT
-──────────────────────────────────────── */
-const phrases = [
-  'Professional Cleaning Services',
-  'Reliable Business Solutions',
-  'Quality Cleaning Products',
-  'Expert Maintenance Teams'
-];
-let pIdx = 0, cIdx = 0, deleting = false;
-const typingEl = document.getElementById('typing-text');
-
-function typeEffect() {
-  const phrase = phrases[pIdx];
-  if (!deleting) {
-    typingEl.innerHTML = phrase.slice(0, ++cIdx) + '<span class="cursor"></span>';
-    if (cIdx === phrase.length) { deleting = true; setTimeout(typeEffect, 2000); return; }
-  } else {
-    typingEl.innerHTML = phrase.slice(0, --cIdx) + '<span class="cursor"></span>';
-    if (cIdx === 0) { deleting = false; pIdx = (pIdx + 1) % phrases.length; }
-  }
-  setTimeout(typeEffect, deleting ? 40 : 70);
-}
-typeEffect();
-
-/* ────────────────────────────────────────
-   SERVICE MODAL DATA
-──────────────────────────────────────── */
-const serviceData = {
-  cleaning: {
-    title: 'Professional Cleaning Services',
-    icon: 'bi-bucket-fill',
-    desc: 'We provide high-quality residential, office and commercial cleaning services that leave your environment fresh, hygienic and welcoming.',
-    items: ['Home & Apartment Cleaning','Office & Workspace Cleaning','Deep Cleaning','Carpet & Upholstery Cleaning','Window & Glass Cleaning','Post-Construction Cleaning']
-  },
-  business: {
-    title: 'Business Solutions',
-    icon: 'bi-briefcase-fill',
-    desc: 'Comprehensive enterprise support and outsourced cleaning contracts designed for businesses of all sizes.',
-    items: ['Monthly Cleaning Contracts','Workspace Sanitization','Staff Outsourcing','Facility Management Support','Event Cleaning','Post-Event Cleanup']
-  },
-  products: {
-    title: 'Cleaning Products',
-    icon: 'bi-cart-fill',
-    desc: 'We supply quality detergents, disinfectants and sanitation products suitable for homes and businesses.',
-    items: ['Liquid Detergents','Disinfectants & Sanitizers','Air Fresheners','Mops, Brushes & Brooms','Dustbins & Waste Bags','Cleaning Accessories']
-  },
-  maintenance: {
-    title: 'Maintenance Services',
-    icon: 'bi-tools',
-    desc: 'Keep your premises in top condition with our reliable maintenance and repair services.',
-    items: ['Plumbing Repairs','Electrical Checks','Painting & Touch-Ups','Pest Control','Fumigation Services','General Handyman Work']
-  }
-};
-
-function openModal(type) {
-  const d = serviceData[type];
-  if (!d) return;
-  document.getElementById('modalTitle').innerHTML = `<i class="bi ${d.icon} me-2" style="color:var(--gold-light)"></i>${d.title}`;
-  document.getElementById('modalBody').innerHTML = `
+    function openModal(type) {
+      const d = serviceData[type];
+      if (!d) return;
+      document.getElementById('modalTitle').innerHTML = `<i class="bi ${d.icon} me-2" style="color:var(--gold-light)"></i>${d.title}`;
+      document.getElementById('modalBody').innerHTML = `
     <p style="color:var(--muted);font-size:15px;line-height:1.7;margin-bottom:1.5rem;">${d.desc}</p>
     <div style="font-size:13px;text-transform:uppercase;letter-spacing:1px;color:#555;margin-bottom:0.8rem;">What's Included</div>
     <ul style="list-style:none;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:8px;">
@@ -1160,133 +1303,106 @@ function openModal(type) {
         <i class="bi bi-check-circle-fill me-2" style="color:var(--gold);"></i>${i}
       </li>`).join('')}
     </ul>`;
-  new bootstrap.Modal(document.getElementById('serviceModal')).show();
-}
-
-/* ────────────────────────────────────────
-   TOAST UTILITY
-──────────────────────────────────────── */
-function showToast(msg, type='success') {
-  const toast = document.getElementById('toastMsg');
-  document.getElementById('toastIcon').textContent = type === 'success' ? '✅' : '❌';
-  document.getElementById('toastText').textContent = msg;
-  toast.className = `toast-msg ${type} show`;
-  setTimeout(() => toast.classList.remove('show'), 4500);
-}
-
-/* ────────────────────────────────────────
-   BOOKING FORM — DATABASE READY
-   ════════════════════════════════════════
-   HOW TO CONNECT YOUR DATABASE:
-   1. Build a backend endpoint (Node.js/PHP/Python)
-   2. Set API_CONFIG.bookingEndpoint to your URL
-   3. Set API_CONFIG.useRealAPI = true
-   4. Your backend receives JSON and saves to DB
-──────────────────────────────────────── */
-document.getElementById('bookingForm').addEventListener('submit', async function(e) {
-  e.preventDefault();
-
-  // ── Validation ──
-  const name    = document.getElementById('fullName').value.trim();
-  const phone   = document.getElementById('phone').value.trim();
-  const service = document.getElementById('service').value;
-
-  let valid = true;
-
-  ['fullName','phone','service'].forEach(id => {
-    const el = document.getElementById(id);
-    if (!el.value.trim()) {
-      el.classList.add('is-invalid');
-      valid = false;
-    } else {
-      el.classList.remove('is-invalid');
-      el.classList.add('is-valid');
+      new bootstrap.Modal(document.getElementById('serviceModal')).show();
     }
-  });
 
-  if (!valid) { showToast('Please fill in all required fields.', 'error'); return; }
+    /* ────────────────────────────────────────
+       TOAST UTILITY
+    ──────────────────────────────────────── */
+    function showToast(msg, type = 'success') {
+      const toast = document.getElementById('toastMsg');
+      document.getElementById('toastIcon').textContent = type === 'success' ? '✅' : '❌';
+      document.getElementById('toastText').textContent = msg;
+      toast.className = `toast-msg ${type} show`;
+      setTimeout(() => toast.classList.remove('show'), 4500);
+    }
 
-  // ── Collect form data (this is what goes to your database) ──
-  const bookingData = {
-    full_name:      name,
-    phone:          phone,
-    email:          document.getElementById('email').value.trim(),
-    service:        service,
-    preferred_date: document.getElementById('preferredDate').value,
-    location:       document.getElementById('location').value.trim(),
-    message:        document.getElementById('message').value.trim(),
-    submitted_at:   new Date().toISOString(),
-    status:         'pending'   // default booking status for your DB
-  };
+    /* ────────────────────────────────────────
+       BOOKING FORM — CONNECTED TO DATABASE
+    ──────────────────────────────────────── */
+    document.getElementById('bookingForm').addEventListener('submit', async function (e) {
+      e.preventDefault();
 
-  // ── UI: show loading ──
-  const btn     = document.getElementById('submitBtn');
-  const spinner = document.getElementById('spinner');
-  const btnText = document.getElementById('btnText');
-  btn.disabled = true;
-  spinner.style.display = 'inline-block';
-  btnText.textContent = 'Sending…';
+      const name = document.getElementById('fullName').value.trim();
+      const phone = document.getElementById('phone').value.trim();
+      const service = document.getElementById('service').value;
 
-  try {
+      let valid = true;
 
-    if (API_CONFIG.useRealAPI) {
-      /* ════════════════════════════════════
-         REAL API CALL — connects to your DB
-         Your backend should:
-         1. Receive POST JSON
-         2. INSERT into bookings table
-         3. Return { success: true, booking_id: '...' }
-         4. Optionally send confirmation SMS/email
-      ════════════════════════════════════ */
-      const response = await fetch(API_CONFIG.bookingEndpoint, {
-        method:  'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body:    JSON.stringify(bookingData)
+      ['fullName', 'phone', 'service'].forEach(id => {
+        const el = document.getElementById(id);
+        if (!el.value.trim()) {
+          el.classList.add('is-invalid');
+          valid = false;
+        } else {
+          el.classList.remove('is-invalid');
+          el.classList.add('is-valid');
+        }
       });
 
-      const result = await response.json();
+      if (!valid) { showToast('Please fill in all required fields.', 'error'); return; }
 
-      if (response.ok && result.success) {
-        showToast(`Booking received! Reference: ${result.booking_id || 'N/A'}`);
-        document.getElementById('bookingForm').reset();
-        document.querySelectorAll('.is-valid').forEach(el => el.classList.remove('is-valid'));
-      } else {
-        throw new Error(result.message || 'Booking failed. Please try again.');
+      const bookingData = {
+        full_name: name,
+        phone: phone,
+        email: document.getElementById('email').value.trim(),
+        service: service,
+        preferred_date: document.getElementById('preferredDate').value,
+        location: document.getElementById('location').value.trim(),
+        message: document.getElementById('message').value.trim(),
+        submitted_at: new Date().toISOString(),
+        status: 'pending'
+      };
+
+      const btn = document.getElementById('submitBtn');
+      const spinner = document.getElementById('spinner');
+      const btnText = document.getElementById('btnText');
+      btn.disabled = true;
+      spinner.style.display = 'inline-block';
+      btnText.textContent = 'Sending…';
+
+      try {
+        if (API_CONFIG.useRealAPI) {
+          const response = await fetch(API_CONFIG.bookingEndpoint, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(bookingData)
+          });
+
+          const result = await response.json();
+
+          if (response.ok && result.success) {
+            showToast(`Booking received! Reference: ${result.booking_id || 'N/A'}`);
+            document.getElementById('bookingForm').reset();
+            document.querySelectorAll('.is-valid').forEach(el => el.classList.remove('is-valid'));
+          } else {
+            throw new Error(result.message || 'Booking failed. Please try again.');
+          }
+        } else {
+          await new Promise(resolve => setTimeout(resolve, 1200));
+          console.log('Booking data ready for DB:', bookingData);
+          showToast('Booking request sent! We\'ll contact you within 1 hour.');
+          document.getElementById('bookingForm').reset();
+          document.querySelectorAll('.is-valid').forEach(el => el.classList.remove('is-valid'));
+        }
+
+      } catch (err) {
+        console.error('Booking error:', err);
+        showToast(err.message || 'Something went wrong. Please try WhatsApp instead.', 'error');
+      } finally {
+        btn.disabled = false;
+        spinner.style.display = 'none';
+        btnText.textContent = 'Send Booking Request';
       }
+    });
 
-    } else {
-      /* ════════════════════════════════════
-         FALLBACK — FormSubmit (no backend)
-         Replace YOUR_EMAIL with your real email
-         Remove this block once your API is live
-      ════════════════════════════════════ */
-      await new Promise(resolve => setTimeout(resolve, 1200)); // simulate network
-
-      // Log what would be sent to DB (for testing)
-      console.log('📦 Booking data ready for DB:', bookingData);
-
-      showToast('Booking request sent! We\'ll contact you within 1 hour.');
-      document.getElementById('bookingForm').reset();
-      document.querySelectorAll('.is-valid').forEach(el => el.classList.remove('is-valid'));
-    }
-
-  } catch (err) {
-    console.error('Booking error:', err);
-    showToast(err.message || 'Something went wrong. Please try WhatsApp instead.', 'error');
-  } finally {
-    btn.disabled = false;
-    spinner.style.display = 'none';
-    btnText.textContent = 'Send Booking Request';
-  }
-});
-
-// Clear invalid state on input
-document.querySelectorAll('.form-control, .form-select').forEach(el => {
-  el.addEventListener('input', () => {
-    el.classList.remove('is-invalid');
-  });
-});
-</script>
+    document.querySelectorAll('.form-control, .form-select').forEach(el => {
+      el.addEventListener('input', () => {
+        el.classList.remove('is-invalid');
+      });
+    });
+  </script>
 
 </body>
+
 </html>

@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Milisam Admin Dashboard</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --gold:       #C9922A;
+      --gold-light: #E8B455;
+      --black:      #0A0A0A;
+      --dark:       #111111;
+      --dark2:      #181818;
+      --dark3:      #222222;
+      --border:     rgba(201,146,42,0.25);
+      --text:       #F0EDE8;
+      --muted:      #888888;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: var(--black); color: var(--text); font-family: 'DM Sans', sans-serif; }
+
+    /* ── LOGIN ── */
+    #loginScreen {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(ellipse at 50% 0%, rgba(201,146,42,0.08) 0%, transparent 70%), var(--black);
+    }
+    .login-card {
+      background: var(--dark2);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 2.5rem;
+      width: 100%;
+      max-width: 420px;
+    }
+    .login-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      color: var(--gold-light);
+      margin-bottom: 0.3rem;
+    }
+    .form-control {
+      background: var(--dark3);
+      border: 1px solid #333;
+      color: var(--text);
+      border-radius: 8px;
+      padding: 0.75rem 1rem;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+    }
+    .form-control:focus {
+      background: var(--dark3);
+      color: var(--text);
+      border-color: var(--gold);
+      box-shadow: 0 0 0 3px rgba(201,146,42,0.12);
+      outline: none;
+    }
+    .form-control::placeholder { color: #555; }
+    .form-label { font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: var(--muted); margin-bottom: 6px; }
+    .btn-gold {
+      background: var(--gold);
+      color: #111;
+      border: none;
+      border-radius: 8px;
+      padding: 0.8rem 1.5rem;
+      font-weight: 700;
+      font-size: 15px;
+      width: 100%;
+      transition: all 0.3s;
+      font-family: 'DM Sans', sans-serif;
+    }
+    .btn-gold:hover { background: var(--gold-light); transform: translateY(-2px); }
+
+    /* ── DASHBOARD ── */
+    #dashboard { display: none; min-height: 100vh; }
+
+    .sidebar {
+      width: 240px;
+      background: var(--dark2);
+      border-right: 1px solid var(--border);
+      min-height: 100vh;
+      position: fixed;
+      top: 0; left: 0;
+      padding: 1.5rem 0;
+      z-index: 100;
+    }
+    .sidebar-brand {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      color: var(--gold-light);
+      padding: 0 1.5rem 1.5rem;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 1rem;
+    }
+    .sidebar-brand small { display: block; font-family: 'DM Sans', sans-serif; font-size: 11px; color: var(--muted); margin-top: 2px; }
+    .nav-item-side {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 0.75rem 1.5rem;
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-decoration: none;
+    }
+    .nav-item-side:hover, .nav-item-side.active { color: var(--gold-light); background: rgba(201,146,42,0.08); }
+    .nav-item-side i { font-size: 16px; }
+
+    .main-content {
+      margin-left: 240px;
+      padding: 2rem;
+    }
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .page-title { font-family: 'Playfair Display', serif; font-size: 1.6rem; }
+
+    /* ── STAT CARDS ── */
+    .stat-card {
+      background: var(--dark2);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.5rem;
+      transition: all 0.3s;
+    }
+    .stat-card:hover { border-color: rgba(201,146,42,0.5); transform: translateY(-3px); }
+    .stat-num { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 700; color: var(--gold-light); }
+    .stat-label { font-size: 13px; color: var(--muted); margin-top: 4px; }
+    .stat-icon { font-size: 24px; color: var(--gold); opacity: 0.6; }
+
+    /* ── TABLE ── */
+    .table-card {
+      background: var(--dark2);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+    .table-header {
+      padding: 1.2rem 1.5rem;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .table-title { font-size: 15px; font-weight: 600; }
+    .search-box {
+      background: var(--dark3);
+      border: 1px solid #333;
+      color: var(--text);
+      border-radius: 8px;
+      padding: 0.5rem 1rem;
+      font-size: 13px;
+      font-family: 'DM Sans', sans-serif;
+      width: 220px;
+    }
+    .search-box:focus { outline: none; border-color: var(--gold); }
+    .search-box::placeholder { color: #555; }
+
+    table { width: 100%; border-collapse: collapse; }
+    thead th {
+      background: var(--dark3);
+      padding: 0.85rem 1rem;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--muted);
+      font-weight: 600;
+      text-align: left;
+    }
+    tbody tr { border-bottom: 1px solid rgba(255,255,255,0.04); transition: background 0.2s; }
+    tbody tr:hover { background: rgba(255,255,255,0.03); }
+    tbody td { padding: 0.9rem 1rem; font-size: 13px; vertical-align: middle; }
+
+    .badge-status {
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .badge-pending    { background: rgba(255,193,7,0.15);  color: #ffc107; }
+    .badge-confirmed  { background: rgba(13,202,240,0.15); color: #0dcaf0; }
+    .badge-completed  { background: rgba(37,211,102,0.15); color: #25d366; }
+    .badge-cancelled  { background: rgba(220,53,69,0.15);  color: #dc3545; }
+
+    .btn-action {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      border-radius: 6px;
+      padding: 4px 10px;
+      font-size: 12px;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-family: 'DM Sans', sans-serif;
+    }
+    .btn-action:hover { border-color: var(--gold); color: var(--gold-light); }
+    .btn-delete { border-color: rgba(220,53,69,0.3); }
+    .btn-delete:hover { border-color: #dc3545; color: #dc3545; }
+
+    .filter-select {
+      background: var(--dark3);
+      border: 1px solid #333;
+      color: var(--text);
+      border-radius: 8px;
+      padding: 0.5rem 1rem;
+      font-size: 13px;
+      font-family: 'DM Sans', sans-serif;
+    }
+    .filter-select:focus { outline: none; border-color: var(--gold); }
+
+    /* ── MODAL ── */
+    .modal-content {
+      background: var(--dark2);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      color: var(--text);
+    }
+    .modal-header { border-bottom: 1px solid var(--border); }
+    .modal-footer { border-top: 1px solid var(--border); }
+    .detail-row { display: flex; gap: 1rem; padding: 0.6rem 0; border-bottom: 1px solid rgba(255,255,255,0.05); font-size: 14px; }
+    .detail-label { color: var(--muted); min-width: 120px; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; }
+    .detail-value { color: var(--text); font-weight: 500; }
+
+    .empty-state { text-align: center; padding: 3rem; color: var(--muted); }
+    .empty-state i { font-size: 3rem; margin-bottom: 1rem; opacity: 0.3; }
+
+    .loading { text-align: center; padding: 2rem; color: var(--muted); }
+
+    /* Toast */
+    .toast-wrap { position: fixed; bottom: 2rem; right: 2rem; z-index: 9999; }
+    .toast-msg {
+      background: var(--dark2); border: 1px solid var(--border);
+      border-radius: 12px; padding: 1rem 1.5rem;
+      display: flex; align-items: center; gap: 12px;
+      font-size: 14px; box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+      transform: translateY(100px); opacity: 0; transition: all 0.4s ease;
+    }
+    .toast-msg.show { transform: translateY(0); opacity: 1; }
+    .toast-msg.success { border-color: rgba(37,211,102,0.4); }
+    .toast-msg.error   { border-color: rgba(220,53,69,0.4); }
+
+    @media(max-width: 768px) {
+      .sidebar { width: 100%; min-height: auto; position: relative; }
+      .main-content { margin-left: 0; padding: 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════
+     LOGIN SCREEN
+══════════════════════════════════ -->
+<div id="loginScreen">
+  <div class="login-card">
+    <div class="text-center mb-4">
+      <div class="login-title">Milisam Enterprise</div>
+      <div style="font-size:13px;color:var(--muted);">Admin Dashboard — Secure Login</div>
+    </div>
+
+    <div id="loginError" class="alert" style="display:none;background:rgba(220,53,69,0.1);border:1px solid rgba(220,53,69,0.3);color:#dc3545;border-radius:8px;padding:0.75rem 1rem;font-size:13px;margin-bottom:1rem;"></div>
+
+    <div class="mb-3">
+      <label class="form-label">Username</label>
+      <input type="text" class="form-control" id="loginUser" placeholder="Enter username"/>
+    </div>
+    <div class="mb-4">
+      <label class="form-label">Password</label>
+      <input type="password" class="form-control" id="loginPass" placeholder="Enter password"/>
+    </div>
+    <button class="btn-gold" onclick="doLogin()">
+      <i class="bi bi-shield-lock-fill me-2"></i> Login
+    </button>
+    <div class="text-center mt-3" style="font-size:12px;color:var(--muted);">
+      Default: admin / milisam2024
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     DASHBOARD
+══════════════════════════════════ -->
+<div id="dashboard">
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <div class="sidebar-brand">
+      Milisam Enterprise
+      <small>Admin Panel</small>
+    </div>
+    <a class="nav-item-side active" onclick="showSection('bookings')">
+      <i class="bi bi-calendar-check-fill"></i> Bookings
+    </a>
+    <a class="nav-item-side" onclick="showSection('stats')">
+      <i class="bi bi-bar-chart-fill"></i> Overview
+    </a>
+    <a class="nav-item-side" href="index.html" target="_blank">
+      <i class="bi bi-globe"></i> View Website
+    </a>
+    <a class="nav-item-side" onclick="doLogout()" style="position:absolute;bottom:2rem;width:100%;">
+      <i class="bi bi-box-arrow-left"></i> Logout
+    </a>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main-content">
+
+    <!-- Topbar -->
+    <div class="topbar">
+      <div>
+        <div class="page-title">Bookings Dashboard</div>
+        <div style="font-size:13px;color:var(--muted);margin-top:4px;">Manage all incoming booking requests</div>
+      </div>
+      <button class="btn-gold" style="width:auto;padding:0.6rem 1.2rem;font-size:14px;" onclick="loadBookings()">
+        <i class="bi bi-arrow-clockwise me-1"></i> Refresh
+      </button>
+    </div>
+
+    <!-- STATS SECTION -->
+    <div id="statsSection">
+      <div class="row g-3 mb-4">
+        <div class="col-6 col-lg-3">
+          <div class="stat-card">
+            <div class="d-flex justify-content-between align-items-start">
+              <div>
+                <div class="stat-num" id="statTotal">—</div>
+                <div class="stat-label">Total Bookings</div>
+              </div>
+              <i class="bi bi-calendar-fill stat-icon"></i>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-lg-3">
+          <div class="stat-card">
+            <div class="d-flex justify-content-between align-items-start">
+              <div>
+                <div class="stat-num" id="statPending">—</div>
+                <div class="stat-label">Pending</div>
+              </div>
+              <i class="bi bi-hourglass-split stat-icon"></i>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-lg-3">
+          <div class="stat-card">
+            <div class="d-flex justify-content-between align-items-start">
+              <div>
+                <div class="stat-num" id="statConfirmed">—</div>
+                <div class="stat-label">Confirmed</div>
+              </div>
+              <i class="bi bi-check-circle-fill stat-icon"></i>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-lg-3">
+          <div class="stat-card">
+            <div class="d-flex justify-content-between align-items-start">
+              <div>
+                <div class="stat-num" id="statCompleted">—</div>
+                <div class="stat-label">Completed</div>
+              </div>
+              <i class="bi bi-patch-check-fill stat-icon"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BOOKINGS TABLE -->
+    <div class="table-card">
+      <div class="table-header">
+        <div class="table-title"><i class="bi bi-list-ul me-2" style="color:var(--gold);"></i>All Bookings</div>
+        <div class="d-flex gap-2 flex-wrap">
+          <input type="text" class="search-box" id="searchBox" placeholder="🔍 Search name, phone…" oninput="filterTable()"/>
+          <select class="filter-select" id="filterStatus" onchange="filterTable()">
+            <option value="">All Status</option>
+            <option value="pending">Pending</option>
+            <option value="confirmed">Confirmed</option>
+            <option value="completed">Completed</option>
+            <option value="cancelled">Cancelled</option>
+          </select>
+          <select class="filter-select" id="filterService" onchange="filterTable()">
+            <option value="">All Services</option>
+            <option value="cleaning">Cleaning</option>
+            <option value="business">Business</option>
+            <option value="products">Products</option>
+            <option value="maintenance">Maintenance</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+      </div>
+
+      <div id="tableWrap">
+        <div class="loading"><i class="bi bi-arrow-repeat"></i> Loading bookings…</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     BOOKING DETAIL MODAL
+══════════════════════════════════ -->
+<div class="modal fade" id="detailModal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" style="color:var(--gold-light);font-family:'Playfair Display',serif;">Booking Details</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body p-4" id="detailBody"></div>
+      <div class="modal-footer">
+        <button type="button" class="btn-action" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     STATUS UPDATE MODAL
+══════════════════════════════════ -->
+<div class="modal fade" id="statusModal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" style="color:var(--gold-light);">Update Status</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body p-4">
+        <input type="hidden" id="statusBookingId"/>
+        <label class="form-label">New Status</label>
+        <select class="form-control" id="newStatus" style="margin-top:6px;">
+          <option value="pending">Pending</option>
+          <option value="confirmed">Confirmed</option>
+          <option value="completed">Completed</option>
+          <option value="cancelled">Cancelled</option>
+        </select>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn-action" data-bs-dismiss="modal">Cancel</button>
+        <button type="button" class="btn-gold" style="width:auto;padding:0.5rem 1.2rem;font-size:13px;" onclick="updateStatus()">Update</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Toast -->
+<div class="toast-wrap">
+  <div class="toast-msg" id="toastMsg">
+    <span id="toastIcon"></span>
+    <span id="toastText"></span>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+/* ════════════════════════════════════
+   CONFIG
+════════════════════════════════════ */
+const API_BASE = 'http://localhost:3000';
+const ADMIN_USER = 'admin';
+const ADMIN_PASS = 'milisam2024';
+
+let allBookings = [];
+
+/* ════════════════════════════════════
+   LOGIN
+════════════════════════════════════ */
+function doLogin() {
+  const user = document.getElementById('loginUser').value.trim();
+  const pass = document.getElementById('loginPass').value.trim();
+  const err  = document.getElementById('loginError');
+
+  if (user === ADMIN_USER && pass === ADMIN_PASS) {
+    document.getElementById('loginScreen').style.display = 'none';
+    document.getElementById('dashboard').style.display = 'block';
+    loadBookings();
+  } else {
+    err.style.display = 'block';
+    err.textContent = '❌ Invalid username or password.';
+  }
+}
+
+// Allow Enter key on login
+document.getElementById('loginPass').addEventListener('keydown', e => {
+  if (e.key === 'Enter') doLogin();
+});
+document.getElementById('loginUser').addEventListener('keydown', e => {
+  if (e.key === 'Enter') doLogin();
+});
+
+function doLogout() {
+  document.getElementById('loginScreen').style.display = 'flex';
+  document.getElementById('dashboard').style.display = 'none';
+  document.getElementById('loginUser').value = '';
+  document.getElementById('loginPass').value = '';
+}
+
+/* ════════════════════════════════════
+   LOAD BOOKINGS
+════════════════════════════════════ */
+async function loadBookings() {
+  document.getElementById('tableWrap').innerHTML = '<div class="loading"><i class="bi bi-arrow-repeat"></i> Loading bookings…</div>';
+
+  try {
+    const res  = await fetch(`${API_BASE}/bookings?limit=200`);
+    const data = await res.json();
+    allBookings = data.data || [];
+    updateStats(allBookings);
+    renderTable(allBookings);
+  } catch (err) {
+    document.getElementById('tableWrap').innerHTML = `
+      <div class="empty-state">
+        <i class="bi bi-exclamation-circle"></i>
+        <div>Could not connect to server.</div>
+        <div style="font-size:12px;margin-top:8px;">Make sure <strong>node server.js</strong> is running.</div>
+      </div>`;
+  }
+}
+
+/* ════════════════════════════════════
+   STATS
+════════════════════════════════════ */
+function updateStats(bookings) {
+  document.getElementById('statTotal').textContent     = bookings.length;
+  document.getElementById('statPending').textContent   = bookings.filter(b => b.status === 'pending').length;
+  document.getElementById('statConfirmed').textContent = bookings.filter(b => b.status === 'confirmed').length;
+  document.getElementById('statCompleted').textContent = bookings.filter(b => b.status === 'completed').length;
+}
+
+/* ════════════════════════════════════
+   RENDER TABLE
+════════════════════════════════════ */
+function renderTable(bookings) {
+  if (bookings.length === 0) {
+    document.getElementById('tableWrap').innerHTML = `
+      <div class="empty-state">
+        <i class="bi bi-inbox"></i>
+        <div>No bookings found.</div>
+      </div>`;
+    return;
+  }
+
+  const rows = bookings.map(b => `
+    <tr>
+      <td style="color:var(--gold-light);font-weight:600;">MIL-${String(b.id).padStart(5,'0')}</td>
+      <td>${b.full_name}</td>
+      <td>${b.phone}</td>
+      <td><span style="text-transform:capitalize;">${b.service}</span></td>
+      <td>${b.preferred_date ? new Date(b.preferred_date).toLocaleDateString('en-KE') : '—'}</td>
+      <td>${b.location || '—'}</td>
+      <td><span class="badge-status badge-${b.status}">${b.status}</span></td>
+      <td>${new Date(b.submitted_at).toLocaleDateString('en-KE')}</td>
+      <td>
+        <div class="d-flex gap-1">
+          <button class="btn-action" onclick="viewBooking(${b.id})" title="View"><i class="bi bi-eye"></i></button>
+          <button class="btn-action" onclick="openStatusModal(${b.id}, '${b.status}')" title="Update Status"><i class="bi bi-pencil"></i></button>
+          <button class="btn-action btn-delete" onclick="deleteBooking(${b.id}, '${b.full_name}')" title="Delete"><i class="bi bi-trash"></i></button>
+        </div>
+      </td>
+    </tr>
+  `).join('');
+
+  document.getElementById('tableWrap').innerHTML = `
+    <div style="overflow-x:auto;">
+      <table>
+        <thead>
+          <tr>
+            <th>Ref</th>
+            <th>Name</th>
+            <th>Phone</th>
+            <th>Service</th>
+            <th>Date</th>
+            <th>Location</th>
+            <th>Status</th>
+            <th>Submitted</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>${rows}</tbody>
+      </table>
+    </div>`;
+}
+
+/* ════════════════════════════════════
+   FILTER
+════════════════════════════════════ */
+function filterTable() {
+  const search  = document.getElementById('searchBox').value.toLowerCase();
+  const status  = document.getElementById('filterStatus').value;
+  const service = document.getElementById('filterService').value;
+
+  const filtered = allBookings.filter(b => {
+    const matchSearch  = !search  || b.full_name.toLowerCase().includes(search) || b.phone.includes(search);
+    const matchStatus  = !status  || b.status  === status;
+    const matchService = !service || b.service === service;
+    return matchSearch && matchStatus && matchService;
+  });
+
+  updateStats(filtered);
+  renderTable(filtered);
+}
+
+/* ════════════════════════════════════
+   VIEW BOOKING DETAIL
+════════════════════════════════════ */
+function viewBooking(id) {
+  const b = allBookings.find(x => x.id === id);
+  if (!b) return;
+
+  document.getElementById('detailBody').innerHTML = `
+    <div class="detail-row"><span class="detail-label">Reference</span><span class="detail-value" style="color:var(--gold-light);">MIL-${String(b.id).padStart(5,'0')}</span></div>
+    <div class="detail-row"><span class="detail-label">Full Name</span><span class="detail-value">${b.full_name}</span></div>
+    <div class="detail-row"><span class="detail-label">Phone</span><span class="detail-value">${b.phone}</span></div>
+    <div class="detail-row"><span class="detail-label">Email</span><span class="detail-value">${b.email || '—'}</span></div>
+    <div class="detail-row"><span class="detail-label">Service</span><span class="detail-value" style="text-transform:capitalize;">${b.service}</span></div>
+    <div class="detail-row"><span class="detail-label">Preferred Date</span><span class="detail-value">${b.preferred_date ? new Date(b.preferred_date).toLocaleDateString('en-KE') : '—'}</span></div>
+    <div class="detail-row"><span class="detail-label">Location</span><span class="detail-value">${b.location || '—'}</span></div>
+    <div class="detail-row"><span class="detail-label">Status</span><span class="detail-value"><span class="badge-status badge-${b.status}">${b.status}</span></span></div>
+    <div class="detail-row"><span class="detail-label">Submitted</span><span class="detail-value">${new Date(b.submitted_at).toLocaleString('en-KE')}</span></div>
+    <div class="detail-row" style="border:none;"><span class="detail-label">Message</span><span class="detail-value">${b.message || '—'}</span></div>
+  `;
+
+  new bootstrap.Modal(document.getElementById('detailModal')).show();
+}
+
+/* ════════════════════════════════════
+   UPDATE STATUS
+════════════════════════════════════ */
+function openStatusModal(id, currentStatus) {
+  document.getElementById('statusBookingId').value = id;
+  document.getElementById('newStatus').value = currentStatus;
+  new bootstrap.Modal(document.getElementById('statusModal')).show();
+}
+
+async function updateStatus() {
+  const id     = document.getElementById('statusBookingId').value;
+  const status = document.getElementById('newStatus').value;
+
+  try {
+    const res  = await fetch(`${API_BASE}/bookings/${id}/status`, {
+      method:  'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body:    JSON.stringify({ status })
+    });
+    const data = await res.json();
+
+    if (data.success) {
+      bootstrap.Modal.getInstance(document.getElementById('statusModal')).hide();
+      showToast(`Status updated to ${status}`, 'success');
+      loadBookings();
+    } else {
+      showToast('Failed to update status.', 'error');
+    }
+  } catch (err) {
+    showToast('Server error. Try again.', 'error');
+  }
+}
+
+/* ════════════════════════════════════
+   DELETE BOOKING
+════════════════════════════════════ */
+async function deleteBooking(id, name) {
+  if (!confirm(`Delete booking from ${name}? This cannot be undone.`)) return;
+
+  try {
+    const res  = await fetch(`${API_BASE}/bookings/${id}`, { method: 'DELETE' });
+    const data = await res.json();
+
+    if (data.success) {
+      showToast('Booking deleted.', 'success');
+      loadBookings();
+    } else {
+      showToast('Failed to delete booking.', 'error');
+    }
+  } catch (err) {
+    showToast('Server error. Try again.', 'error');
+  }
+}
+
+/* ════════════════════════════════════
+   TOAST
+════════════════════════════════════ */
+function showToast(msg, type='success') {
+  const toast = document.getElementById('toastMsg');
+  document.getElementById('toastIcon').textContent = type === 'success' ? '✅' : '❌';
+  document.getElementById('toastText').textContent = msg;
+  toast.className = `toast-msg ${type} show`;
+  setTimeout(() => toast.classList.remove('show'), 4000);
+}
+
+function showSection(s) {
+  document.querySelectorAll('.nav-item-side').forEach(el => el.classList.remove('active'));
+  event.target.closest('.nav-item-side').classList.add('active');
+}
+</script>
+</body>
+</html>
